@@ -4,7 +4,7 @@ const resolvers = require('./resolvers')
 
 const getPrismaInstance = () => {
   return new Prisma({
-    typeDefs: './generated/prisma.graphql',
+    typeDefs: 'src/generated/prisma.graphql',
     endpoint: process.env.PRISMA_ENDPOINT,     
     debug: true                             
   })
