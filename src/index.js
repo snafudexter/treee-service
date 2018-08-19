@@ -5,8 +5,8 @@ const resolvers = require('./resolvers')
 const getPrismaInstance = () => {
   return new Prisma({
     typeDefs: 'src/generated/prisma.graphql',
-    endpoint: process.env.PRISMA_ENDPOINT,     // `secret` taken from `prisma.yml`
-    debug: false                             // log all requests to the Prisma API to console
+    endpoint: process.env.PRISMA_ENDPOINT,     
+    debug: true                             
   })
 }
 
