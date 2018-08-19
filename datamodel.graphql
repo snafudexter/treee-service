@@ -1,0 +1,34 @@
+type User {
+  id: ID! @unique
+  name: String!
+  email: String!
+  phone: String!
+  tPass: String
+  age: Int
+  gender: GENDER
+  qualification: Qualification
+  tutoringExp: Float
+  classesTaught: [Class!]!
+  pricePerAnnum: Int
+  profession: Profession
+}
+
+type Profession {
+  id: ID! @unique
+  name: String!
+}
+
+type Class {
+  id: ID! @unique
+  name: String!
+}
+
+type Qualification {
+  id: ID! @unique
+  name: String!
+}
+
+enum GENDER {
+  M,
+  F
+}

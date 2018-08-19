@@ -1,0 +1,6 @@
+endpoint: https://eu1.prisma.sh/prabh-8aa6b8/treee-service/dev
+datamodel: datamodel.graphql
+hooks:
+  post-deploy:
+    - graphql get-schema --output ./src/generated/prisma.graphql
+    - graphql prepare
