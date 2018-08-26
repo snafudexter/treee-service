@@ -1,5 +1,5 @@
 # source: https://eu1.prisma.sh/prabh-8aa6b8/treee-service/dev
-# timestamp: Sun Aug 19 2018 15:03:30 GMT+0530 (IST)
+# timestamp: Sun Aug 26 2018 16:34:14 GMT+0530 (IST)
 
 type AggregateClass {
   count: Int!
@@ -1168,4 +1168,6 @@ input UserWhereInput {
 
 input UserWhereUniqueInput {
   id: ID
+  email: String
+  phone: String
 }

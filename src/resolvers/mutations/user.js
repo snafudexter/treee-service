@@ -1,7 +1,13 @@
 const user = {
-    register(parent, {name, email, phone }, ctx, info)
+    async register(parent, {name, email, phone }, ctx, info)
     {
-        console.log('mut')
+        var user = await ctx.db.query.user({where:{email}})
+        if(user)
+            throw new Error(`Email Already Registered`)
+        var user = await ctx.db.query.user({where:{phone}})
+        if(user)
+            throw new Error(`Mobile Already Registered`)
+        
         return ctx.db.mutation.createUser({data:{name, email, phone, tPass: 1234}}, info);
     },
 
