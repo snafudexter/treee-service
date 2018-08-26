@@ -18,20 +18,20 @@ const user = {
     },
 
     async confirmOTP(parent, { id, otp }, ctx, info) {
-        //const userId = getUserId(ctx);   
-          var user = await ctx.db.query.user({ where: { id } },`{
-            id
-            tPass
-          }`); 
-    
-          if(otp === tPass)
-          {
-            return ctx.db.query.user({ where: { id } }, info);
-          }
-          else{
-            throw new Error(`Wrong OTP`)
-          }
-      },
+    //const userId = getUserId(ctx);   
+        var user = await ctx.db.query.user({ where: { id } },`{
+        id
+        tPass
+        }`); 
+
+        if(otp === user.tPass)
+        {
+        return ctx.db.query.user({ where: { id } }, info);
+        }
+        else{
+        throw new Error(`Wrong OTP`)
+        }
+    },
 
 }
 
