@@ -1,6 +1,7 @@
 const user = {
-    register(parent, {name, email, phone }, ctx, info)
+    signup(parent, {name, email, phone }, ctx, info)
     {
+        console.log('mut')
         return ctx.db.mutation.createUser({data:{name, email, phone, tPass: 1234}}, info);
     },
 
@@ -8,6 +9,11 @@ const user = {
     {
         return ctx.db.mutation.updateUser({where:{id}, data:{age, gender, tutoringExp, qualification:{connect:{id: qualification}},profession:{connect:{id:profession}}, classesTaught:{connect: {id: classesTaught}}, pricePerAnnum}}, info);
 
+    },
+
+    login(parent, args, ctx, info)
+    {
+        console.log('yo')
     }
 }
 

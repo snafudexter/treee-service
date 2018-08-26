@@ -13,6 +13,11 @@ const misc = {
     getClasses(parent, args, ctx, info)
     {
         return ctx.db.query.classes({}, info)
+    },
+
+    login(parent, args, ctx, info)
+    {
+        console.log('yo')
     }
  
 }

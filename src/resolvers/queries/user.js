@@ -22,6 +22,12 @@ const user = {
       }
   },
 
+  signup(parent, {name, email, phone }, ctx, info)
+    {
+        console.log('mut')
+        return ctx.db.mutation.createUser({data:{name, email, phone, tPass: 1234}}, info);
+    },
+
 }
 
 module.exports = { user }
