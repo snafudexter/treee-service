@@ -1,5 +1,5 @@
 const user = {
-    signup(parent, {name, email, phone }, ctx, info)
+    register(parent, {name, email, phone }, ctx, info)
     {
         console.log('mut')
         return ctx.db.mutation.createUser({data:{name, email, phone, tPass: 1234}}, info);
@@ -11,10 +11,6 @@ const user = {
 
     },
 
-    login(parent, args, ctx, info)
-    {
-        console.log('yo')
-    }
 }
 
 module.exports = { user }

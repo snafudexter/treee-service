@@ -1,7 +1,7 @@
 const  { user } = require('./user')
 
 module.exports = {
-    queries: {
+    mutations: {
       ...user,
     }
   }

@@ -8,6 +8,6 @@ module.exports = {
   },
   Mutation: {
     ...mutations
-  },
+  }
   //AuthPayload,
 }
