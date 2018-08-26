@@ -1,8 +1,8 @@
 type User {
   id: ID! @unique
   name: String!
-  email: String!
-  phone: String!
+  email: String! @unique
+  phone: String! @unique
   tPass: String
   age: Int
   gender: GENDER
