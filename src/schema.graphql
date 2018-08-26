@@ -2,7 +2,7 @@
 
 type Query {
    getUser(id: ID!): User
-   confirmOTP(id: ID!, otp: String!): User
+
    login(name: String, password: String): User
 
    getProfessions: [Profession]
@@ -12,6 +12,7 @@ type Query {
 }
 
 type Mutation {
+    confirmOTP(id: ID!, otp: String!): User
     register(name: String, email: String, phone: String): User
     updateUserData(id: ID!, age: Int, gender: String, qualification: ID!, tutoringExp: Float, profession: ID!, classesTaught: [ID], pricePerAnnum: Int):User
 }
