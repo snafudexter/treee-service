@@ -1,7 +1,7 @@
 const user = {
     register(parent, {name, email, phone }, ctx, info)
     {
-        return ctx.db.mutation.createUser({data:{name: email, phone, tPass: 1234}}, info);
+        return ctx.db.mutation.createUser({data:{name, email, phone, tPass: 1234}}, info);
     },
 
     updateUserData(parent, {id, age, gender, qualification, tutoringExp, profession, classesTaught, pricePerAnnum}, ctx, info)
