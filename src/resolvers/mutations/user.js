@@ -1,3 +1,5 @@
+var axios = require('axios');
+
 const user = {
     async register(parent, {name, email, phone }, ctx, info)
     {
@@ -7,8 +9,19 @@ const user = {
         var user = await ctx.db.query.user({where:{phone}})
         if(user)
             throw new Error(`Mobile Already Registered`)
+
+        var apiKey = "AOyDRLOVLKI-qvWXro1VaEyeV8H9m7OfxfWb5Ez6yt";
+        var baseUrl = "https://api.textlocal.in/send/?";
+        var sender = "TXTLCL"    
+
+        var val = Math.floor(1000 + Math.random() * 9000);
+        var data = "apikey=" + apiKey + "&numbers=" + phone + "&sender=" + sender + "&message=" + val;
+
+        await axios.get(baseUrl+data)
+        return ctx.db.mutation.createUser({data:{name, email, phone, tPass: val}}, info);
+
+
         
-        return ctx.db.mutation.createUser({data:{name, email, phone, tPass: 1234}}, info);
     },
 
     updateUserData(parent, {id, age, gender, qualification, tutoringExp, profession, classesTaught, pricePerAnnum}, ctx, info)
