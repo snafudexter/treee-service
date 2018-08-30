@@ -15,13 +15,10 @@ const user = {
         var sender = "TXTLCL"    
 
         var val = Math.floor(1000 + Math.random() * 9000);
-        var data = "apikey=" + apiKey + "&numbers=" + phone + "&sender=" + sender + "&message=" + val;
+        var data = "apikey=" + apiKey + "&numbers=91" + phone + "&sender=" + sender + "&message=" + val;
 
         await axios.get(baseUrl+data)
         return ctx.db.mutation.createUser({data:{name, email, phone, tPass: val}}, info);
-
-
-        
     },
 
     updateUserData(parent, {id, age, gender, qualification, tutoringExp, profession, classesTaught, pricePerAnnum}, ctx, info)
