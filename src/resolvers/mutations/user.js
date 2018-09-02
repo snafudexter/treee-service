@@ -51,13 +51,14 @@ const user = {
             var user = await ctx.db.query.user({ where: { id } },`{
             id
             tPass
+            phone
             }`); 
     
             var apiKey = "AOyDRLOVLKI-qvWXro1VaEyeV8H9m7OfxfWb5Ez6yt";
             var baseUrl = "https://api.textlocal.in/send/?";
             var sender = "TREEIN"    
 
-            var data = "apikey=" + apiKey + "&numbers=91" + phone + "&sender=" + sender + "&message=" + `Your OTP for registering with Tree Enterprises is ${user.Tpass}. Please DO NOT share this with anyone.`;
+            var data = "apikey=" + apiKey + "&numbers=91" + user.phone + "&sender=" + sender + "&message=" + `Your OTP for registering with Tree Enterprises is ${user.tPass}. Please DO NOT share this with anyone.`;
 
             await axios.get(baseUrl+data)
             return ctx.db.query.user({ where: { id } },`{
