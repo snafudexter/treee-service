@@ -18,11 +18,5 @@
     "dotenv": "^6.0.0",
     "nodemon": "1.14.10",
     "prisma": "^1.8.0"
-  },
-  "now": {
-    "name": "treee-service",
-    "alias": [
-      "treee-service"
-    ]
   }
 }
