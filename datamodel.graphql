@@ -6,7 +6,7 @@ type User {
   tPass: String
   age: Int
   gender: GENDER
-  qualification: Qualification
+  qualification: String
   tutoringExp: Float
   classesTaught: [Class!]!
   pricePerAnnum: Int
@@ -19,11 +19,6 @@ type Profession {
 }
 
 type Class {
-  id: ID! @unique
-  name: String!
-}
-
-type Qualification {
   id: ID! @unique
   name: String!
 }

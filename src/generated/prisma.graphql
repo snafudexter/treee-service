@@ -1,15 +1,11 @@
 # source: https://eu1.prisma.sh/prabh-8aa6b8/treee-service/dev
-# timestamp: Sun Aug 26 2018 16:34:14 GMT+0530 (IST)
+# timestamp: Wed Sep 05 2018 14:22:50 GMT+0530 (India Standard Time)
 
 type AggregateClass {
   count: Int!
 }
 
 type AggregateProfession {
-  count: Int!
-}
-
-type AggregateQualification {
   count: Int!
 }
 
@@ -248,27 +244,21 @@ type Mutation {
   createUser(data: UserCreateInput!): User!
   createClass(data: ClassCreateInput!): Class!
   createProfession(data: ProfessionCreateInput!): Profession!
-  createQualification(data: QualificationCreateInput!): Qualification!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updateClass(data: ClassUpdateInput!, where: ClassWhereUniqueInput!): Class
   updateProfession(data: ProfessionUpdateInput!, where: ProfessionWhereUniqueInput!): Profession
-  updateQualification(data: QualificationUpdateInput!, where: QualificationWhereUniqueInput!): Qualification
   deleteUser(where: UserWhereUniqueInput!): User
   deleteClass(where: ClassWhereUniqueInput!): Class
   deleteProfession(where: ProfessionWhereUniqueInput!): Profession
-  deleteQualification(where: QualificationWhereUniqueInput!): Qualification
   upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
   upsertClass(where: ClassWhereUniqueInput!, create: ClassCreateInput!, update: ClassUpdateInput!): Class!
   upsertProfession(where: ProfessionWhereUniqueInput!, create: ProfessionCreateInput!, update: ProfessionUpdateInput!): Profession!
-  upsertQualification(where: QualificationWhereUniqueInput!, create: QualificationCreateInput!, update: QualificationUpdateInput!): Qualification!
   updateManyUsers(data: UserUpdateInput!, where: UserWhereInput): BatchPayload!
   updateManyClasses(data: ClassUpdateInput!, where: ClassWhereInput): BatchPayload!
   updateManyProfessions(data: ProfessionUpdateInput!, where: ProfessionWhereInput): BatchPayload!
-  updateManyQualifications(data: QualificationUpdateInput!, where: QualificationWhereInput): BatchPayload!
   deleteManyUsers(where: UserWhereInput): BatchPayload!
   deleteManyClasses(where: ClassWhereInput): BatchPayload!
   deleteManyProfessions(where: ProfessionWhereInput): BatchPayload!
-  deleteManyQualifications(where: QualificationWhereInput): BatchPayload!
 }
 
 enum MutationType {
@@ -503,224 +493,16 @@ input ProfessionWhereUniqueInput {
   id: ID
 }
 
-type Qualification implements Node {
-  id: ID!
-  name: String!
-}
-
-"""A connection to a list of items."""
-type QualificationConnection {
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """A list of edges."""
-  edges: [QualificationEdge]!
-  aggregate: AggregateQualification!
-}
-
-input QualificationCreateInput {
-  name: String!
-}
-
-input QualificationCreateOneInput {
-  create: QualificationCreateInput
-  connect: QualificationWhereUniqueInput
-}
-
-"""An edge in a connection."""
-type QualificationEdge {
-  """The item at the end of the edge."""
-  node: Qualification!
-
-  """A cursor for use in pagination."""
-  cursor: String!
-}
-
-enum QualificationOrderByInput {
-  id_ASC
-  id_DESC
-  name_ASC
-  name_DESC
-  updatedAt_ASC
-  updatedAt_DESC
-  createdAt_ASC
-  createdAt_DESC
-}
-
-type QualificationPreviousValues {
-  id: ID!
-  name: String!
-}
-
-type QualificationSubscriptionPayload {
-  mutation: MutationType!
-  node: Qualification
-  updatedFields: [String!]
-  previousValues: QualificationPreviousValues
-}
-
-input QualificationSubscriptionWhereInput {
-  """Logical AND on all given filters."""
-  AND: [QualificationSubscriptionWhereInput!]
-
-  """Logical OR on all given filters."""
-  OR: [QualificationSubscriptionWhereInput!]
-
-  """Logical NOT on all given filters combined by AND."""
-  NOT: [QualificationSubscriptionWhereInput!]
-
-  """
-  The subscription event gets dispatched when it's listed in mutation_in
-  """
-  mutation_in: [MutationType!]
-
-  """
-  The subscription event gets only dispatched when one of the updated fields names is included in this list
-  """
-  updatedFields_contains: String
-
-  """
-  The subscription event gets only dispatched when all of the field names included in this list have been updated
-  """
-  updatedFields_contains_every: [String!]
-
-  """
-  The subscription event gets only dispatched when some of the field names included in this list have been updated
-  """
-  updatedFields_contains_some: [String!]
-  node: QualificationWhereInput
-}
-
-input QualificationUpdateDataInput {
-  name: String
-}
-
-input QualificationUpdateInput {
-  name: String
-}
-
-input QualificationUpdateOneInput {
-  create: QualificationCreateInput
-  connect: QualificationWhereUniqueInput
-  disconnect: Boolean
-  delete: Boolean
-  update: QualificationUpdateDataInput
-  upsert: QualificationUpsertNestedInput
-}
-
-input QualificationUpsertNestedInput {
-  update: QualificationUpdateDataInput!
-  create: QualificationCreateInput!
-}
-
-input QualificationWhereInput {
-  """Logical AND on all given filters."""
-  AND: [QualificationWhereInput!]
-
-  """Logical OR on all given filters."""
-  OR: [QualificationWhereInput!]
-
-  """Logical NOT on all given filters combined by AND."""
-  NOT: [QualificationWhereInput!]
-  id: ID
-
-  """All values that are not equal to given value."""
-  id_not: ID
-
-  """All values that are contained in given list."""
-  id_in: [ID!]
-
-  """All values that are not contained in given list."""
-  id_not_in: [ID!]
-
-  """All values less than the given value."""
-  id_lt: ID
-
-  """All values less than or equal the given value."""
-  id_lte: ID
-
-  """All values greater than the given value."""
-  id_gt: ID
-
-  """All values greater than or equal the given value."""
-  id_gte: ID
-
-  """All values containing the given string."""
-  id_contains: ID
-
-  """All values not containing the given string."""
-  id_not_contains: ID
-
-  """All values starting with the given string."""
-  id_starts_with: ID
-
-  """All values not starting with the given string."""
-  id_not_starts_with: ID
-
-  """All values ending with the given string."""
-  id_ends_with: ID
-
-  """All values not ending with the given string."""
-  id_not_ends_with: ID
-  name: String
-
-  """All values that are not equal to given value."""
-  name_not: String
-
-  """All values that are contained in given list."""
-  name_in: [String!]
-
-  """All values that are not contained in given list."""
-  name_not_in: [String!]
-
-  """All values less than the given value."""
-  name_lt: String
-
-  """All values less than or equal the given value."""
-  name_lte: String
-
-  """All values greater than the given value."""
-  name_gt: String
-
-  """All values greater than or equal the given value."""
-  name_gte: String
-
-  """All values containing the given string."""
-  name_contains: String
-
-  """All values not containing the given string."""
-  name_not_contains: String
-
-  """All values starting with the given string."""
-  name_starts_with: String
-
-  """All values not starting with the given string."""
-  name_not_starts_with: String
-
-  """All values ending with the given string."""
-  name_ends_with: String
-
-  """All values not ending with the given string."""
-  name_not_ends_with: String
-}
-
-input QualificationWhereUniqueInput {
-  id: ID
-}
-
 type Query {
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   classes(where: ClassWhereInput, orderBy: ClassOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Class]!
   professions(where: ProfessionWhereInput, orderBy: ProfessionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Profession]!
-  qualifications(where: QualificationWhereInput, orderBy: QualificationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Qualification]!
   user(where: UserWhereUniqueInput!): User
   class(where: ClassWhereUniqueInput!): Class
   profession(where: ProfessionWhereUniqueInput!): Profession
-  qualification(where: QualificationWhereUniqueInput!): Qualification
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
   classesConnection(where: ClassWhereInput, orderBy: ClassOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ClassConnection!
   professionsConnection(where: ProfessionWhereInput, orderBy: ProfessionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ProfessionConnection!
-  qualificationsConnection(where: QualificationWhereInput, orderBy: QualificationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): QualificationConnection!
 
   """Fetches an object given its ID"""
   node(
@@ -733,7 +515,6 @@ type Subscription {
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
   class(where: ClassSubscriptionWhereInput): ClassSubscriptionPayload
   profession(where: ProfessionSubscriptionWhereInput): ProfessionSubscriptionPayload
-  qualification(where: QualificationSubscriptionWhereInput): QualificationSubscriptionPayload
 }
 
 type User implements Node {
@@ -744,7 +525,7 @@ type User implements Node {
   tPass: String
   age: Int
   gender: GENDER
-  qualification(where: QualificationWhereInput): Qualification
+  qualification: String
   tutoringExp: Float
   classesTaught(where: ClassWhereInput, orderBy: ClassOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Class!]
   pricePerAnnum: Int
@@ -768,9 +549,9 @@ input UserCreateInput {
   tPass: String
   age: Int
   gender: GENDER
+  qualification: String
   tutoringExp: Float
   pricePerAnnum: Int
-  qualification: QualificationCreateOneInput
   classesTaught: ClassCreateManyInput
   profession: ProfessionCreateOneInput
 }
@@ -799,6 +580,8 @@ enum UserOrderByInput {
   age_DESC
   gender_ASC
   gender_DESC
+  qualification_ASC
+  qualification_DESC
   tutoringExp_ASC
   tutoringExp_DESC
   pricePerAnnum_ASC
@@ -817,6 +600,7 @@ type UserPreviousValues {
   tPass: String
   age: Int
   gender: GENDER
+  qualification: String
   tutoringExp: Float
   pricePerAnnum: Int
 }
@@ -867,9 +651,9 @@ input UserUpdateInput {
   tPass: String
   age: Int
   gender: GENDER
+  qualification: String
   tutoringExp: Float
   pricePerAnnum: Int
-  qualification: QualificationUpdateOneInput
   classesTaught: ClassUpdateManyInput
   profession: ProfessionUpdateOneInput
 }
@@ -1115,6 +899,46 @@ input UserWhereInput {
 
   """All values that are not contained in given list."""
   gender_not_in: [GENDER!]
+  qualification: String
+
+  """All values that are not equal to given value."""
+  qualification_not: String
+
+  """All values that are contained in given list."""
+  qualification_in: [String!]
+
+  """All values that are not contained in given list."""
+  qualification_not_in: [String!]
+
+  """All values less than the given value."""
+  qualification_lt: String
+
+  """All values less than or equal the given value."""
+  qualification_lte: String
+
+  """All values greater than the given value."""
+  qualification_gt: String
+
+  """All values greater than or equal the given value."""
+  qualification_gte: String
+
+  """All values containing the given string."""
+  qualification_contains: String
+
+  """All values not containing the given string."""
+  qualification_not_contains: String
+
+  """All values starting with the given string."""
+  qualification_starts_with: String
+
+  """All values not starting with the given string."""
+  qualification_not_starts_with: String
+
+  """All values ending with the given string."""
+  qualification_ends_with: String
+
+  """All values not ending with the given string."""
+  qualification_not_ends_with: String
   tutoringExp: Float
 
   """All values that are not equal to given value."""
@@ -1159,7 +983,6 @@ input UserWhereInput {
 
   """All values greater than or equal the given value."""
   pricePerAnnum_gte: Int
-  qualification: QualificationWhereInput
   classesTaught_every: ClassWhereInput
   classesTaught_some: ClassWhereInput
   classesTaught_none: ClassWhereInput
