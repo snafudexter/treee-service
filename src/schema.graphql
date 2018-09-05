@@ -1,5 +1,4 @@
-# import User from "./generated/prisma.graphql"
-
+# import * from "./generated/prisma.graphql"
 type Query {
    getUser(id: ID!): User
 
@@ -13,6 +12,7 @@ type Query {
 
 type Mutation {
     confirmOTP(id: ID!, otp: String!): User
+    resendOTP(id: ID!): User
     register(name: String, email: String, phone: String): User
     updateUserData(id: ID!, age: Int, gender: String, qualification: String, tutoringExp: Float, profession: ID!, classesTaught: [ID], pricePerAnnum: Int):User
 }
