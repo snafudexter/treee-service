@@ -24,9 +24,15 @@ const user = {
 
 
 
-    updateUserData(parent, {id, age, gender, qualification, tutoringExp, profession, classesTaught, pricePerAnnum}, ctx, info)
+    async updateUserData(parent, {id, age, gender, qualification, tutoringExp, profession, classesTaught, pricePerAnnum}, ctx, info)
     {
-        return ctx.db.mutation.updateUser({where:{id}, data:{age, gender, tutoringExp, qualification,profession:{connect:{id:profession}}, classesTaught:{connect: {id: classesTaught}}, pricePerAnnum}}, info);
+        for(var i = 0; i < classesTaught.length; i++)
+        {
+            await ctx.db.mutation.updateUser({where:{id}, data:{classesTaught:{connect: {id: classesTaught[i]}}}}, info);
+
+        }
+
+        return ctx.db.mutation.updateUser({where:{id}, data:{age, gender, tutoringExp, qualification,profession:{connect:{id:profession}}, pricePerAnnum}}, info);
 
     },
 
