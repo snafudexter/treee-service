@@ -5,7 +5,7 @@ const resolvers = require('./resolvers')
 const getPrismaInstance = () => {
   return new Prisma({
     typeDefs: 'src/generated/prisma.graphql',
-    endpoint: 'https://eu1.prisma.sh/prabh-8aa6b8/treee-service/dev',     
+    endpoint: 'http://159.89.173.174:4466/',     
     debug: true                             
   })
 }
