@@ -18,5 +18,5 @@ const server = new GraphQLServer({
     db: getPrismaInstance(),
   }),
 })
-  server.start(() => console.log('Server is running on http://localhost:4000'))
+  server.start(() => console.log('Server is running on https://localhost:4000'))
   
