@@ -25,6 +25,6 @@ type Class {
 }
 
 enum GENDER {
-  M,
+  M
   F
 }
