@@ -11,6 +11,7 @@ type User {
   classesTaught: [Class!]!
   pricePerAnnum: Int
   profession: Profession
+  refferal: String @unique
 }
 
 type Profession {

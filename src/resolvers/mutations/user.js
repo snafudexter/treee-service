@@ -1,4 +1,5 @@
 var axios = require('axios');
+var shortid = require('shortid');
 
 const user = {
     async register(parent, {name, email, phone }, ctx, info)
@@ -32,8 +33,21 @@ const user = {
 
         }
 
-        return ctx.db.mutation.updateUser({where:{id}, data:{age, gender, tutoringExp, qualification,profession:{connect:{id:profession}}, pricePerAnnum}}, info);
+        shortid.characters('abcdefghijklmnopqrstuvwxyz#@ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789')
+        var code = shortid.generate();
 
+        while(true){
+            var users = await ctx.db.query.users({where:{refferal:code}});
+            
+            if(users.length > 0)
+            {
+                code = shortid.generate();
+            }
+            else{
+                break;
+            }
+        }
+        return ctx.db.mutation.updateUser({where:{id}, data:{refferal:code, age, gender, tutoringExp, qualification,profession:{connect:{id:profession}}, pricePerAnnum}}, info);
     },
 
     async confirmOTP(parent, { id, otp }, ctx, info) {
