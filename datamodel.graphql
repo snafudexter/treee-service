@@ -12,6 +12,7 @@ type User {
   pricePerAnnum: Int
   profession: Profession
   refferal: String @unique
+  confirmed: Boolean
 }
 
 type Profession {

@@ -5,10 +5,10 @@ const user = {
     async register(parent, {name, email, phone }, ctx, info)
     {
         var user = await ctx.db.query.user({where:{email}})
-        if(user)
+        if(user.confirmed)
             throw new Error(`Email Already Registered`)
         var user = await ctx.db.query.user({where:{phone}})
-        if(user)
+        if(user.confirmed)
             throw new Error(`Mobile Already Registered`)
 
         var apiKey = "AOyDRLOVLKI-qvWXro1VaEyeV8H9m7OfxfWb5Ez6yt";
@@ -47,7 +47,7 @@ const user = {
                 break;
             }
         }
-        return ctx.db.mutation.updateUser({where:{id}, data:{refferal:code, age, gender, tutoringExp, qualification,profession:{connect:{id:profession}}, pricePerAnnum}}, info);
+        return ctx.db.mutation.updateUser({where:{id}, data:{refferal:code, age, gender, tutoringExp, qualification,profession:{connect:{id:profession}}, pricePerAnnum, confirmed: true}}, info);
     },
 
     async confirmOTP(parent, { id, otp }, ctx, info) {
