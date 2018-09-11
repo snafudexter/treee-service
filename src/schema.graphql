@@ -12,6 +12,6 @@ type Query {
 type Mutation {
     confirmOTP(id: ID!, otp: String!): User
     resendOTP(id: ID!): User
-    register(name: String, email: String, phone: String): User
+    register(name: String, email: String, phone: String, refferal: String): User
     updateUserData(id: ID!, age: Int, gender: String, qualification: String, tutoringExp: Float, profession: ID!, classesTaught: [ID], pricePerAnnum: Int):User
 }
