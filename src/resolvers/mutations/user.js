@@ -42,7 +42,7 @@ const user = {
         var code = shortid.generate();
 
         while(true){
-            var users = await ctx.db.query.users({where:{refferal:code}});
+            var users = await ctx.db.query.users({where:{refferal:{code}}});
             
             if(users.length > 0)
             {
@@ -52,7 +52,7 @@ const user = {
                 break;
             }
         }
-        return ctx.db.mutation.updateUser({where:{id}, data:{refferal:code, age, gender, tutoringExp, qualification,profession:{connect:{id:profession}}, pricePerAnnum, confirmed: true}}, info);
+        return ctx.db.mutation.updateUser({where:{id}, data:{refferal:{create: [code]}, age, gender, tutoringExp, qualification,profession:{connect:{id:profession}}, pricePerAnnum, confirmed: true}}, info);
     },
 
     async confirmOTP(parent, { id, otp }, ctx, info) {
