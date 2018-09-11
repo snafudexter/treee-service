@@ -52,7 +52,7 @@ const user = {
                 break;
             }
         }
-        return ctx.db.mutation.updateUser({where:{id}, data:{refferal:{create: [code]}, age, gender, tutoringExp, qualification,profession:{connect:{id:profession}}, pricePerAnnum, confirmed: true}}, info);
+        return ctx.db.mutation.updateUser({where:{id}, data:{refferal:{create: {code}}, age, gender, tutoringExp, qualification,profession:{connect:{id:profession}}, pricePerAnnum, confirmed: true}}, info);
     },
 
     async confirmOTP(parent, { id, otp }, ctx, info) {
