@@ -2,7 +2,7 @@ var axios = require('axios');
 var shortid = require('shortid');
 
 const user = {
-    async register(parent, {name, email, phone }, ctx, info)
+    async register(parent, {name, email, phone, refferal }, ctx, info)
     {
         var user = await ctx.db.query.user({where:{email}})
         if(user.confirmed)
@@ -20,7 +20,12 @@ const user = {
         var data = "apikey=" + apiKey + "&numbers=91" + phone + "&sender=" + sender + "&message=" + `Your OTP for registering with Tree Enterprises is ${val}. Please DO NOT share this with anyone.`;
 
         await axios.get(baseUrl+data)
-        return ctx.db.mutation.createUser({data:{name, email, phone, tPass: val}}, info);
+
+        if(refferal)
+            return ctx.db.mutation.upsertUser({where: {phone},update:{name, email, phone, tPass: val, refferal: {connect: {code: refferal}}},create:{name, email, phone, tPass: val}}, info);
+        else    
+            return ctx.db.mutation.upsertUser({where: {phone},update:{name, email, phone, tPass: val},create:{name, email, phone, tPass: val}}, info);
+
     },
 
 

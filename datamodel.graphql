@@ -11,8 +11,13 @@ type User {
   classesTaught: [Class!]!
   pricePerAnnum: Int
   profession: Profession
-  refferal: String @unique
+  refferal: Refferal
   confirmed: Boolean
+}
+
+type Refferal {
+  id: ID! @unique
+  code: String! @unique
 }
 
 type Profession {
