@@ -5,9 +5,11 @@ const user = {
     async register(parent, {name, email, phone, refferal }, ctx, info)
     {
         var user = await ctx.db.query.user({where:{email}})
+        if(user)
         if(user.confirmed)
             throw new Error(`Email Already Registered`)
         var user = await ctx.db.query.user({where:{phone}})
+        if(user)
         if(user.confirmed)
             throw new Error(`Mobile Already Registered`)
 
