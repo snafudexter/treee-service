@@ -40,21 +40,7 @@ const user = {
 
         }
 
-        shortid.characters('abcdefghijklmnopqrstuvwxyz#@ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789')
-        var code = shortid.generate();
-
-        while(true){
-            var users = await ctx.db.query.users({where:{refferal:{code}}});
-            
-            if(users.length > 0)
-            {
-                code = shortid.generate();
-            }
-            else{
-                break;
-            }
-        }
-        return ctx.db.mutation.updateUser({where:{id}, data:{refferal:{create: {code}}, age, gender, tutoringExp, qualification,profession:{connect:{id:profession}}, pricePerAnnum, confirmed: true}}, info);
+        return ctx.db.mutation.updateUser({where:{id}, data:{ age, gender, tutoringExp, qualification,profession:{connect:{id:profession}}, pricePerAnnum, confirmed: true}}, info);
     },
 
     async confirmOTP(parent, { id, otp }, ctx, info) {
