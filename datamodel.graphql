@@ -11,7 +11,7 @@ type User {
   classesTaught: [Class!]!
   pricePerAnnum: Int
   profession: Profession
-  refferal: [User!]!
+  refferal: String
   confirmed: Boolean
   
 }

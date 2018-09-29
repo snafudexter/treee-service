@@ -24,7 +24,7 @@ const user = {
         await axios.get(baseUrl+data)
 
         if(refferal)
-            return ctx.db.mutation.upsertUser({where: {phone},update:{name, email, phone, tPass: val, refferal:{connect:{phone: refferal}}},create:{name, email, phone, tPass: val, refferal:{connect:{phone: refferal}}}}, info);
+            return ctx.db.mutation.upsertUser({where: {phone},update:{name, email, phone, tPass: val, refferal},create:{name, email, phone, tPass: val, refferal}}, info);
         else    
             return ctx.db.mutation.upsertUser({where: {phone},update:{name, email, phone, tPass: val},create:{name, email, phone, tPass: val}}, info);
 
